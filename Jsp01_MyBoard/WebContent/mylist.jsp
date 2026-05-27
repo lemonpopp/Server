@@ -34,13 +34,25 @@
 			<tr>
 				<td><%= list.get(i).getMyno() %></td>
 				<td><%= list.get(i).getMyname() %></td>
-				<td><%= list.get(i).getMytitle() %></td>
+				<td><a href="./selectone.jsp?myno=<%= list.get(i).getMyno() %>"><%= list.get(i).getMytitle() %></td>
 				<td><%= list.get(i).getMydate() %></td>
 			</tr>
 <%
 		}
 %>
-		
+		<tr>
+			<td colspan="4" align="right">
+				<!-- <butto onclick="location.href='myinsert.jsp'">글쓰기</button> -->
+				<button>글쓰기</button>
+			</td>
+		</tr>
 	</table>
+	<script type="text/javascript">
+		window.onload=function(){
+			document.getElementsByTagName("button")[0].addEventListener("click",function(){
+				location.href="myinsert.jsp"
+			});
+		}
+	</script>
 </body>
 </html>

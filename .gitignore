@@ -9,3 +9,9 @@ Jsp01_MyBoard/.project
 Jsp01_MyBoard/build/classes/com/my/dao/MyBoardDao.class
 Jsp01_MyBoard/build/classes/com/my/dto/MyBoardDto.class
 Jsp01_MyBoard/build/classes/common/JDBCTemplate.class
+Jsp02_MVC/.settings/
+Jsp02_MVC/WebContent/META-INF/MANIFEST.MF
+Jsp02_MVC/WebContent/WEB-INF/lib/ojdbc11.jar
+Jsp02_MVC/.classpath
+Jsp02_MVC/.gitignore
+Jsp02_MVC/.project
