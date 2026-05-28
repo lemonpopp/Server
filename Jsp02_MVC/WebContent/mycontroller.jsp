@@ -45,6 +45,87 @@
 				request, response 객체 유지X
 				1)response.sendRedirect()
 		*/
+	}else if(command.equals("boardinsertform")){
+		response.sendRedirect("boardinsert.jsp");
+	}else if(command.equals("boardinsert")){
+		String writer = request.getParameter("writer");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		MVCBoardDto dto = new MVCBoardDto(0,writer,title,content,null);
+		
+		int res = dao.insert(dto);
+
+		String msg="";
+		String url="";
+		
+		if(res>0){
+			msg="글 작성 완료";
+			url="?command=boardlist";
+		}else{
+			msg="글 작성 실패";
+			url="?command=boardinsertform";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("url",url);
+		pageContext.forward("result.jsp");
+		
+	}else if(command.equals("boarddetail")){
+		//필요 데이터 준비 후 화면 전환
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		MVCBoardDto res = dao.selectOne(seq);
+		request.setAttribute("dto",res);
+		pageContext.forward("boarddetail.jsp");
+	}else if(command.equals("boardupdateform")){
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		MVCBoardDto dto = dao.selectOne(seq);
+		
+		request.setAttribute("dto", dto);
+		pageContext.forward("boardupdate.jsp"); 	
+	}else if(command.equals("boardupdate")){
+		//넘어오는 파라미터를 받어
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		//dao를 통해 update 진행하고
+		//" UPADATE MVCBOARD SET TITLE=?, CONTETN=? WHERE SEQ=? "
+				
+		MVCBoardDto dto = new MVCBoardDto(seq,"",title,content,null);
+		int res = dao.update(dto);
+		//결과에 따라 result페이지를 통해 화면 처리
+		
+		String msg="";
+		String url="";
+		
+		if(res>0){
+			msg="글 수정 완료";
+			url="?command=boardlist";
+		}else{
+			msg="글 수정 실패";
+			url="?command=boardupdateform&seq="+seq;
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("url",url);
+		pageContext.forward("result.jsp");
+		
+	}else if(command.equals("boarddelete")){
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		int res = dao.delete(seq);
+		
+		String msg="";
+		String url="";
+		
+		if(res>0){
+			msg="글 삭제 완료";
+			url="?command=boardlist";
+		}else{
+			msg="글 삭제 실패";
+			url="?command=boarddetail&seq="+seq;
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("url",url);
+		pageContext.forward("result.jsp");
 	}
 		
 %>

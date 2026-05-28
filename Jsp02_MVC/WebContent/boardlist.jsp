@@ -36,13 +36,18 @@
 				<tr>
 					<td><%=dto.getSeq() %></td>
 					<td><%=dto.getWriter() %></td>					
-					<td><%=dto.getTitle() %></td>
+					<td><a href="mycontroller.jsp?command=boarddetail&seq=<%=dto.getSeq()%>"><%=dto.getTitle() %></a></td>
 					<td><%=dto.getRegdate() %></td>					
 				</tr>
 <%			
 			}
 		}
 %>
+		<tr>
+			<td colspan="4">
+				<input type="button" value="글쓰기" onclick="location.href='mycontroller.jsp?command=boardinsertform'">
+			</td>
+		</tr>
 	</table>
 
 </body>
