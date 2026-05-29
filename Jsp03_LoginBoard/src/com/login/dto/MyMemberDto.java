@@ -1,4 +1,4 @@
-package com.login.fto;
+package com.login.dto;
 
 public class MyMemberDto {
 	private int myno;
